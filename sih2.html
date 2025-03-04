@@ -1,0 +1,247 @@
+<html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Railway CCTV Surveillance</title>
+  
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      background-color: #333;
+      color: white;
+      padding: 20px 10px;
+      text-align: center;
+    }
+
+    nav {
+      background-color: #eee;
+      padding: 10px;
+      text-align: center;
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #007BFF;
+    }
+
+    section {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .video-container {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    video {
+      width: 100%;
+      max-width: 400px;
+      margin: 20px 0;
+    }
+    
+
+/* Style for the message section */
+#messageSection {
+
+  display:inline-block;  
+  width: 30em;
+  padding: 20px;
+  background-color: #fff;
+  margin-top: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#messageContainer {
+  margin-top: 5px;
+ 
+}
+
+
+#chooseOptionsSection {
+  display:inline-block;
+  padding: 20px;
+  /*height:30px;*/
+  background-color: #fff;
+  margin-top: 20px;
+  margin-left: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#membersDropdown {
+  margin-right: 10px;
+}
+
+button {
+  background-color: #007BFF;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      height:3%;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Railway CCTV Surveillance</h1>
+  </header>
+
+  <nav>
+    <a href="#" onclick="playVideo('crowd')">Platform1</a>
+    <a href="#" onclick="playVideo('crime')">Platform2</a>
+    <a href="#" onclick="playVideo('work')">platform3</a>
+    <a href="#" onclick="playVideo('multiple')">Multiple Monitoring</a>
+  </nav>
+
+  <section>
+    <h2 id="categoryTitle">Select a category to view surveillance footage</h2>
+    <p id="categoryDescription">Click on a category above to see more details and watch the CCTV footage.</p>
+    
+    <div class="video-container" id="videoContainer">
+    </div>   
+    
+<div class="video-container" id="videoContainer">
+  
+
+
+  </div>
+  <div id="messageSection">
+    <h2>Messages</h2>
+    <div id="messageContainer">
+        <input type="text" class="custommessge"/>
+    </div>
+  </div>
+  
+  <div id="chooseOptionsSection">
+    <h2>Choose Options</h2>
+    <p>Select members to send messages:</p>
+    <select id="membersDropdown">
+      <option value="member1">Member 1</option>
+      <option value="member2">Member 2</option>
+    </select>
+    <button onclick="sendMessage()">Send Message</button>
+  </div>
+  </section>
+
+
+  <footer>
+    <p>&copy; 2023 Railway CCTV Surveillance. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function playVideo(category) {
+      const videoContainer = document.getElementById('videoContainer');
+      const categoryTitle = document.getElementById('categoryTitle');
+      const categoryDescription = document.getElementById('categoryDescription');
+      
+      
+      videoContainer.innerHTML = '';
+
+      switch (category) {
+        case 'crowd':
+          addVideo('path/to/crowd-management-video.mp4', 'Platform1', 'Efficiently monitor and manage crowd situations at railway stations.');
+          break;
+        case 'crime':
+          addVideo('path/to/crime-prevention-video.mp4', 'Platform2', 'Detect and prevent criminal activities with our advanced surveillance system.');
+          break;
+        case 'work':
+          addVideo('path/to/work-monitoring-video.mp4', 'Platform3', 'Supervise ongoing railway maintenance and construction work.');
+          break;
+        case 'multiple':
+          addVideo('path/to/crowd-management-video.mp4', 'Platform1', 'Simultaneously monitor crowd activities.');
+          addVideo('path/to/crime-prevention-video.mp4', 'Platform2', 'Simultaneously monitor crime prevention activities.');
+          addVideo('path/to/work-monitoring-video.mp4', 'Platform3', 'Simultaneously monitor work activities.');
+          
+          break;
+        default:
+          break;
+      }
+    }
+
+    function addVideo(src, title, description) {
+      const videoContainer = document.getElementById('videoContainer');
+      const videoPlayer = document.createElement('video');
+      videoPlayer.src = src;
+      videoPlayer.controls = true;
+      ;
+      
+      const videoTitle = document.createElement('h3');
+      videoTitle.innerText = title;// Get a reference to the videoPlayer element
+var video  = document.getElementById('videoPlayer');
+
+if (videoPlayer.canPlayType) {
+  videoPlayer.innerHTML = '<video controls><source src="your_video_file.mp4" type="video/mp4">Your browser does not support the video tag.</video>';
+} else {
+  videoPlayer.innerHTML = 'Your browser does not support the video tag.';
+}
+
+
+      const videoDescription = document.createElement('p');
+      videoDescription.innerText = description;
+
+      const videoWrapper = document.createElement('div');
+      videoWrapper.appendChild(videoTitle);
+      videoWrapper.appendChild(videoPlayer);
+      videoWrapper.appendChild(videoDescription);
+      videoContainer.appendChild(videoWrapper);
+      button = document.createElement("button");
+      videoWrapper.appendChild(button);
+    }
+
+    function sendMessage() 
+    {
+    const membersDropdown = document.getElementById('membersDropdown');
+    const selectedMember = membersDropdown.value;
+
+    const messageContainer = document.getElementById('messageContainer');
+    const messageText = 'Your custom message for ' + selectedMember;
+
+    const messageElement = document.createElement('div');
+    messageElement.innerText = messageText;
+
+    messageContainer.appendChild(messageElement);
+  }
+
+    
+  </script>
+
+</body>
+</html>
+    
+</html>
